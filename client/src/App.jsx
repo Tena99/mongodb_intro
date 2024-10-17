@@ -4,8 +4,10 @@ import "./App.css";
 function App() {
   const [users, setUsers] = useState([]);
 
+  let API_URL = import.meta.env.VITE_API_URL;
+
   async function fetchUsers() {
-    const response = await fetch("http://localhost:3000/users");
+    const response = await fetch(`${API_URL}/users`);
     if (!response.ok) {
       console.warn("Response is not OK!");
     }
@@ -19,7 +21,7 @@ function App() {
   }, []);
 
   async function handleUserOnClick() {
-    const response = await fetch("http://localhost:3000/users", {
+    const response = await fetch(`${API_URL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
